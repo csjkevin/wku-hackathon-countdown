@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="theme-color" content="#000000" />
+  </head>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+    body {
+      background: #0f3854;
+      background: radial-gradient(ellipse at center, #0a2e38 0%, #000000 70%);
+      background-size: 100%;
+    }
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    #clock {
+      font-family: "Share Tech Mono", monospace;
+      color: #ffffff;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #daf6ff;
+      text-shadow: 0 0 20px rgba(10, 175, 230, 1),
+        0 0 20px rgba(10, 175, 230, 0);
+    }
+    .time {
+      letter-spacing: 0.05em;
+      font-size: 80px;
+      padding: 5px 0;
+    }
+    .date {
+      letter-spacing: 0.1em;
+      font-size: 24px;
+    }
+    .text {
+      letter-spacing: 0.1em;
+      font-size: 12px;
+      padding: 20px 0 0;
+    }
+  </style>
+  <body>
+    <div id="clock">
+      <p>Current: <span id="current" class="time"></span></p>
+      <p>Remaining: <span id="remaining" class="time"></span></p>
+      <p class="text">2nd WKU Programming Hackathon</p>
+    </div>
+    <script>
+      setInterval(() => {
+        const now = new Date();
+        document.getElementById("current").innerText = `${now
+          .getHours()
+          .toString()
+          .padStart(2, "0")}:${now
+          .getMinutes()
+          .toString()
+          .padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}`;
+        const remainingSeconds = Math.floor(
+          (new Date(2021, 10, 7, 10, 0, 0).getTime() - now.getTime()) / 1000
+        );
+        document.getElementById("remaining").innerText = `${String(
+          Math.floor(remainingSeconds / 3600)
+        ).padStart(2, "0")}:${String(
+          Math.floor((remainingSeconds % 3600) / 60)
+        ).padStart(2, "0")}:${String(
+          Math.floor(remainingSeconds % 60)
+        ).padStart(2, "0")}`;
+      }, 1000);
+    </script>
+  </body>
+</html>
